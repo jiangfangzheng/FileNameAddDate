@@ -19,9 +19,9 @@ public class FileNameAddDate extends JFrame implements ActionListener {
 
     FileNameAddDate() {
         GuiUtil.setSystemStyle();
-        GuiUtil.setFrameCenter(this, false);
         this.setTitle("重命名 By jfz");
         this.setSize(400, 130);
+        GuiUtil.setFrameCenter(this, false);
         this.setVisible(true);
         Container con = this.getContentPane();
         con.setLayout(null);
