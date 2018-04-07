@@ -75,6 +75,7 @@ public class FileNameAddDate extends JFrame implements ActionListener {
 //                JOptionPane.showMessageDialog(this, s, "标题", JOptionPane.WARNING_MESSAGE);
                 path = s;
                 label1.setText("文件目录：" + s);
+                label2.setText("处理结果：未处理");
             }
         }
         // 加日期
