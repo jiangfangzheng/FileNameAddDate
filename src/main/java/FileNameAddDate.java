@@ -1,8 +1,12 @@
+import com.drew.imaging.ImageProcessingException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * @author Sandeepin
@@ -60,6 +64,8 @@ public class FileNameAddDate extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // 选择
         if ("open".equals(e.getActionCommand())) {
+            label2.setText("处理结果：未处理");
+            label1.setText("文件目录：无");
             JFileChooser jf = new JFileChooser();
             // 只选择文件夹
             jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -75,12 +81,20 @@ public class FileNameAddDate extends JFrame implements ActionListener {
 //                JOptionPane.showMessageDialog(this, s, "标题", JOptionPane.WARNING_MESSAGE);
                 path = s;
                 label1.setText("文件目录：" + s);
-                label2.setText("处理结果：未处理");
             }
         }
         // 加日期
         if ("adddate".equals(e.getActionCommand())) {
-            boolean b = RenameUtil.addFileDataToFileName(path);
+            boolean b = false;
+            try {
+                b = RenameUtil.addFileDataToFileName(path);
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            } catch (ImageProcessingException e1) {
+                e1.printStackTrace();
+            }
             if (b) {
                 label2.setText("处理结果：完毕！");
             } else {
